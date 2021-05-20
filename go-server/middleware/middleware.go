@@ -9,8 +9,8 @@ import (
 )
 
 type Strings struct {
-	S1 string
-	S2 string
+	First_string  string
+	Second_string string
 }
 
 func DistanceHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,11 +25,11 @@ func DistanceHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// calculate distance and respond
-	distance := levenshtein.ComputeDistance(s.S1, s.S2)
+	distance := levenshtein.ComputeDistance(s.First_string, s.Second_string)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(distance)
-	fmt.Printf("The distance between %s and %s is %d.\n", s.S1, s.S2, distance)
+	fmt.Printf("The distance between %s and %s is %d.\n", s.First_string, s.Second_string, distance)
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
